@@ -12,6 +12,31 @@
     <title>Nogi Weather App</title>
   </head>
   <body>
-    <div id="content"></div>
+    <header class="header">
+      <div class="header-title">
+        <i class="fa-solid fa-sun"></i>
+        <h1 id="site-name">Nogi Weather</h1>
+      </div>
+      <form class="form" id="search-form" novalidate>
+        <input
+          class="input"
+          id="search-input"
+          type="text"
+          placeholder="Search for a city..."
+        />
+        <button class="button" id="search-btn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+    </header>
+
+    <div class="main"></div>
+
+    <footer class="footer">
+      <p>Built by Nogiback</p>
+      <a href="https://github.com/Nogiback" target="_blank">
+        <i class="fab fa-github fa-spin fa-lg"></i
+      ></a>
+    </footer>
   </body>
 </html>
