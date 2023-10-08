@@ -10,6 +10,7 @@
   --sunnyradial: radial-gradient(circle, var(--lightblue) 0%, var(--lighterblue) 80%);
   --cloudyradial: radial-gradient(circle, rgb(102, 102, 102) 0%, rgb(230, 230, 230) 100%);
   --nightradial: radial-gradient(circle, var(--darkblue) 40%, rgb(25, 25, 25) 80%);
+  --red: rgb(255, 0, 0);
 }
 
 *,
