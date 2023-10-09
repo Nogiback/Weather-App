@@ -7,8 +7,8 @@
   --blue: rgb(15, 76, 117);
   --lightblue: rgb(50, 130, 184);
   --lighterblue: rgb(187, 225, 250);
-  --sunnyradial: radial-gradient(circle, var(--lightblue) 0%, var(--lighterblue) 80%);
-  --cloudyradial: radial-gradient(circle, rgb(102, 102, 102) 0%, rgb(230, 230, 230) 100%);
+  --sunnyradial: radial-gradient(circle, var(--lighterblue) 0%, var(--lightblue) 80%);
+  --cloudyradial: radial-gradient(circle, rgb(230, 230, 230) 0%, rgb(120, 120, 120) 80%);
   --nightradial: radial-gradient(circle, var(--darkblue) 40%, rgb(25, 25, 25) 80%);
   --red: rgb(255, 0, 0);
 }
@@ -98,18 +98,17 @@ body {
 
 .main {
   display: flex;
-  background: var(--nightradial);
+  background: var(--lighterblue);
   width: 100vw;
   height: calc(100vh - 90px);
 }
 
 .weather-card {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
-  width: 500px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -117,7 +116,11 @@ body {
   box-shadow: var(--shadow);
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.2);
-  color: var(--lighterblue);
+  color: var(--darkblue);
+}
+
+.weather-card.active {
+  display: flex;
 }
 
 .weather-card #location-header {
@@ -157,7 +160,13 @@ body {
   width: 500px;
 }
 
+.weather-info h3 {
+  font-weight: 600;
+}
+
 #info-row-1 {
+  border-top: 1px solid;
+  padding-top: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -172,8 +181,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 150px;
-  font-size: 1rem;
-  font-weight: 600;
 }
 
 .footer {
