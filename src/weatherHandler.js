@@ -26,8 +26,15 @@ const weatherHandler = (() => {
         mph: weatherData.current.wind_mph,
       },
       humidity: weatherData.current.humidity,
-      date: format(new Date(weatherData.location.localtime), 'EEEE, MMMM d, y'),
-      timeOfDay: Number(format(new Date(weatherData.location.localtime), 'k')),
+      uvIndex: weatherData.current.uv,
+      sunrise: weatherData.forecast.forecastday[0].astro.sunrise,
+      sunset: weatherData.forecast.forecastday[0].astro.sunset,
+      chanceRain: weatherData.forecast.forecastday[0].day.daily_chance_of_rain,
+      date: format(
+        new Date(weatherData.location.localtime),
+        'EEEE MMMM d, y | h:ma',
+      ),
+      isDay: weatherData.current.is_day,
     };
     return data;
   }
