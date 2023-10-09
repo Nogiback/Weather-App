@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script
-      src="https://kit.fontawesome.com/3ef1768f2a.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/3ef1768f2a.js" crossorigin="anonymous"></script>
     <script src="main.js" defer></script>
     <title>Nogi Weather App</title>
   </head>
@@ -18,12 +15,7 @@
         <h1 id="site-name">Nogi Weather</h1>
       </div>
       <form class="form" id="search-form" novalidate>
-        <input
-          class="input"
-          id="search-input"
-          type="text"
-          placeholder="Search for a city..."
-        />
+        <input class="input" id="search-input" type="text" placeholder="Search for a city..." />
         <button class="button" id="search-btn">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
@@ -32,39 +24,39 @@
 
     <div class="main">
       <div class="weather-card">
-        <h1 id="location-header">Toronto, Canada</h1>
-        <h2 id="date-header">Sunday October 8, 2023, 10:27PM</h2>
-        <h2 id="conditions">Sunny</h2>
+        <h1 id="location-header"></h1>
+        <h2 id="date-header"></h2>
+        <h2 id="conditions"></h2>
         <div class="temperatures">
-          <p id="current-temp">8&#176;</p>
-          <p id="feels-like">Feels like 4&#176;C</p>
+          <p id="current-temp"></p>
+          <p id="feels-like"></p>
         </div>
         <div class="weather-info" id="info-row-1">
           <div class="chance-rain">
-            <p>Chance of Rain</p>
-            <p>80%</p>
+            <h3 class="info-title">Chance of Rain</h3>
+            <p id="chance-data"></p>
           </div>
           <div class="wind">
-            <p>Wind</p>
-            <p>31 km/h SE</p>
+            <h3 class="info-title">Wind</h3>
+            <p id="wind-data"></p>
           </div>
           <div class="humidity">
-            <p>Humidity</p>
-            <p>80%</p>
+            <h3 class="info-title">Humidity</h3>
+            <p id="humidity-data"></p>
           </div>
         </div>
         <div class="weather-info" id="info-row-2">
           <div class="uv-index">
-            <p>UV Index</p>
-            <p>1</p>
+            <h3 class="info-title">UV Index</h3>
+            <p id="uv-data"></p>
           </div>
           <div class="sunrise">
-            <p>Sunrise</p>
-            <p>7:23AM</p>
+            <h3 class="info-title">Sunrise</h3>
+            <p id="sunrise-data"></p>
           </div>
           <div class="sunset">
-            <p>Sunset</p>
-            <p>6:46PM</p>
+            <h3 class="info-title">Sunset</h3>
+            <p id="sunset-data"></p>
           </div>
         </div>
       </div>

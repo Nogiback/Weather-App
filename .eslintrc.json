@@ -12,6 +12,8 @@
     "no-console": "off",
     "no-alert": "off",
     "no-unused-vars": "warn",
+    "no-use-before-define": "warn",
+    "no-useless-return": "off",
     "quotes": ["off", "double"]
   }
 }

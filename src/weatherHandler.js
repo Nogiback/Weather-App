@@ -8,9 +8,8 @@ const weatherHandler = (() => {
       city: weatherData.location.name,
       region: weatherData.location.region,
       country: weatherData.location.country,
-      condition: weatherData.current.condition.text.replace(
-        /(^\w{1})|(\s+\w{1})/g,
-        (letter) => letter.toUpperCase(),
+      condition: weatherData.current.condition.text.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+        letter.toUpperCase(),
       ),
       feelsLike: {
         f: Math.round(weatherData.current.feelslike_f),
@@ -30,10 +29,7 @@ const weatherHandler = (() => {
       sunrise: weatherData.forecast.forecastday[0].astro.sunrise,
       sunset: weatherData.forecast.forecastday[0].astro.sunset,
       chanceRain: weatherData.forecast.forecastday[0].day.daily_chance_of_rain,
-      date: format(
-        new Date(weatherData.location.localtime),
-        'EEEE MMMM d, y | h:ma',
-      ),
+      date: format(new Date(weatherData.location.localtime), 'EEEE MMMM d, y | h:mma'),
       isDay: weatherData.current.is_day,
     };
     return data;
