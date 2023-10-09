@@ -63,6 +63,8 @@ const domHandler = (() => {
       location.textContent = `${weatherData.city}, ${weatherData.region}, USA`;
     } else if (weatherData.region.length > 12) {
       location.textContent = `${weatherData.city}, ${weatherData.country}`;
+    } else if (weatherData.region === '') {
+      location.textContent = `${weatherData.city}, ${weatherData.country}`;
     } else {
       location.textContent = `${weatherData.city}, ${weatherData.region}, ${weatherData.country}`;
     }

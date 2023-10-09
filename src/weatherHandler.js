@@ -39,16 +39,13 @@ const weatherHandler = (() => {
     const callAPI = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=1`;
     try {
       const response = await fetch(callAPI, { mode: 'cors' });
-      if (response.status === 400) {
-        console.log('City not found.');
-      }
       const rawWeatherData = await response.json();
       console.log(rawWeatherData);
       const weatherData = convertWeatherData(rawWeatherData);
       console.log(weatherData);
       return weatherData;
     } catch (error) {
-      alert(error);
+      alert('City Not Found!');
       return null;
     }
   }
