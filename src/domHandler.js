@@ -1,6 +1,7 @@
 import weatherHandler from './weatherHandler';
 
 const domHandler = (() => {
+  // Page initialization
   function initPage() {
     const form = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
@@ -12,6 +13,7 @@ const domHandler = (() => {
       form.reset();
     });
 
+    // Async function on user search event listener to get weatherData
     submitBtn.addEventListener('click', async () => {
       if (searchInput.value === '') {
         return;
@@ -23,7 +25,7 @@ const domHandler = (() => {
       createToggle(weatherData);
     });
 
-    // Initial search for Toronto on page load
+    // Initial search for Toronto on page load using Promise
     const initPromise = new Promise((resolve, reject) => {
       const initLocation = weatherHandler.getWeatherData('Toronto');
       resolve(initLocation);
@@ -54,6 +56,7 @@ const domHandler = (() => {
   }
 
   function deleteToggle() {
+    // Deletes previous toggle buttons
     const metricBtn = document.getElementById('unit-metric');
     const imperialBtn = document.getElementById('unit-imperial');
     metricBtn.remove();
@@ -61,6 +64,7 @@ const domHandler = (() => {
   }
 
   function createToggle(weatherData) {
+    // Creates new metric/imperial toggle buttons for each new search
     const weatherCard = document.querySelector('.weather-card');
     const toggleSection = document.querySelector('.toggle-section');
     const metricBtn = document.createElement('button');
