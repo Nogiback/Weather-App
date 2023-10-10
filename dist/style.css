@@ -96,10 +96,17 @@ body {
   align-items: center;
 }
 
+.toggle-section {
+  border: 2px solid rgb(19, 27, 31);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
 .unit-toggle {
   font-size: 0.8rem;
   border-radius: 10px;
   padding: 0.5rem;
+  width: 60px;
 }
 
 #unit-metric.active,
@@ -121,6 +128,7 @@ body {
   background-color: var(--lighterblue);
   color: var(--darkblue);
   width: 16rem;
+  box-shadow: var(--darkershadow);
 }
 
 #search-btn {

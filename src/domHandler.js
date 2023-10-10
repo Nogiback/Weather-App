@@ -19,7 +19,8 @@ const domHandler = (() => {
       const weatherData = await weatherHandler.getWeatherData(searchInput.value);
       changeBackground(weatherData);
       createWeatherCard(weatherData, getUnits());
-      setUnits(weatherData);
+      deleteToggle();
+      createToggle(weatherData);
     });
 
     // Initial search for Toronto on page load
@@ -32,7 +33,7 @@ const domHandler = (() => {
     initPromise.then((initLocation) => {
       changeBackground(initLocation);
       createWeatherCard(initLocation, initUnit);
-      setUnits(initLocation);
+      createToggle(initLocation);
     });
   }
 
@@ -52,9 +53,34 @@ const domHandler = (() => {
     return units;
   }
 
-  function setUnits(weatherData) {
+  function deleteToggle() {
     const metricBtn = document.getElementById('unit-metric');
     const imperialBtn = document.getElementById('unit-imperial');
+    metricBtn.remove();
+    imperialBtn.remove();
+  }
+
+  function createToggle(weatherData) {
+    const weatherCard = document.querySelector('.weather-card');
+    const toggleSection = document.querySelector('.toggle-section');
+    const metricBtn = document.createElement('button');
+    metricBtn.classList.add('unit-toggle');
+    metricBtn.setAttribute('id', 'unit-metric');
+    metricBtn.textContent = 'Metric';
+    const imperialBtn = document.createElement('button');
+    imperialBtn.classList.add('unit-toggle');
+    imperialBtn.setAttribute('id', 'unit-imperial');
+    imperialBtn.textContent = 'Imperial';
+
+    toggleSection.appendChild(metricBtn);
+    toggleSection.appendChild(imperialBtn);
+
+    if (weatherCard.getAttribute('data-units') === 'metric') {
+      metricBtn.classList.add('active');
+    }
+    if (weatherCard.getAttribute('data-units') === 'imperial') {
+      imperialBtn.classList.add('active');
+    }
 
     metricBtn.addEventListener('click', () => {
       if (metricBtn.classList.contains('active')) {
@@ -101,6 +127,13 @@ const domHandler = (() => {
     }
     const weatherCard = document.querySelector('.weather-card');
     weatherCard.classList.add('active');
+
+    if (units === 'imperial') {
+      weatherCard.setAttribute('data-units', 'imperial');
+    }
+    if (units === 'metric') {
+      weatherCard.setAttribute('data-units', 'metric');
+    }
 
     const location = document.getElementById('location-header');
     const date = document.getElementById('date-header');

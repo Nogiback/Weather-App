@@ -40,9 +40,7 @@ const weatherHandler = (() => {
     try {
       const response = await fetch(callAPI, { mode: 'cors' });
       const rawWeatherData = await response.json();
-      console.log(rawWeatherData);
       const weatherData = convertWeatherData(rawWeatherData);
-      console.log(weatherData);
       return weatherData;
     } catch (error) {
       alert('City Not Found!');

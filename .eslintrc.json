@@ -14,6 +14,7 @@
     "no-unused-vars": "warn",
     "no-use-before-define": "warn",
     "no-useless-return": "off",
+    "prefer-arrow-callback": "off",
     "quotes": ["off", "double"]
   }
 }
