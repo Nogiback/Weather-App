@@ -5,6 +5,7 @@ const domHandler = (() => {
     const form = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
     const submitBtn = document.getElementById('search-btn');
+    const initUnit = 'metric';
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -17,7 +18,60 @@ const domHandler = (() => {
       }
       const weatherData = await weatherHandler.getWeatherData(searchInput.value);
       changeBackground(weatherData);
-      createWeatherCard(weatherData);
+      createWeatherCard(weatherData, getUnits());
+      setUnits(weatherData);
+    });
+
+    // Initial search for Toronto on page load
+    const initPromise = new Promise((resolve, reject) => {
+      const initLocation = weatherHandler.getWeatherData('Toronto');
+      resolve(initLocation);
+      reject(new Error('ERROR'));
+    });
+
+    initPromise.then((initLocation) => {
+      changeBackground(initLocation);
+      createWeatherCard(initLocation, initUnit);
+      setUnits(initLocation);
+    });
+  }
+
+  function getUnits() {
+    const metricBtn = document.getElementById('unit-metric');
+    const imperialBtn = document.getElementById('unit-imperial');
+    let units = '';
+
+    if (metricBtn.classList.contains('active')) {
+      units = 'metric';
+    }
+
+    if (imperialBtn.classList.contains('active')) {
+      units = 'imperial';
+    }
+
+    return units;
+  }
+
+  function setUnits(weatherData) {
+    const metricBtn = document.getElementById('unit-metric');
+    const imperialBtn = document.getElementById('unit-imperial');
+
+    metricBtn.addEventListener('click', () => {
+      if (metricBtn.classList.contains('active')) {
+        return;
+      }
+      metricBtn.classList.add('active');
+      imperialBtn.classList.remove('active');
+      createWeatherCard(weatherData, 'metric');
+    });
+
+    imperialBtn.addEventListener('click', () => {
+      if (imperialBtn.classList.contains('active')) {
+        return;
+      }
+      imperialBtn.classList.add('active');
+      metricBtn.classList.remove('active');
+      createWeatherCard(weatherData, 'imperial');
     });
   }
 
@@ -25,6 +79,7 @@ const domHandler = (() => {
     const main = document.querySelector('.main');
     const weatherCard = document.querySelector('.weather-card');
 
+    // Changes background and font color based on time of day and weather
     if (!weatherData.isDay) {
       main.style.background = 'var(--nightradial)';
       weatherCard.style.color = 'var(--lighterblue)';
@@ -40,7 +95,7 @@ const domHandler = (() => {
     }
   }
 
-  function createWeatherCard(weatherData) {
+  function createWeatherCard(weatherData, units) {
     if (!weatherData) {
       return;
     }
@@ -59,30 +114,37 @@ const domHandler = (() => {
     const sunrise = document.getElementById('sunrise-data');
     const sunset = document.getElementById('sunset-data');
 
+    date.textContent = `${weatherData.date}`;
+    conditions.textContent = `${weatherData.condition}`;
+    chanceOfRain.textContent = `${weatherData.chanceRain}%`;
+    humidity.textContent = `${weatherData.humidity}%`;
+    uvIndex.textContent = `${weatherData.uvIndex}`;
+    sunrise.textContent = `${weatherData.sunrise}`;
+    sunset.textContent = `${weatherData.sunset}`;
+
     if (weatherData.country === 'United States of America') {
       location.textContent = `${weatherData.city}, ${weatherData.region}, USA`;
-    } else if (weatherData.region.length > 12) {
+    } else if (weatherData.region.length > 16) {
       location.textContent = `${weatherData.city}, ${weatherData.country}`;
     } else if (weatherData.region === '') {
       location.textContent = `${weatherData.city}, ${weatherData.country}`;
     } else {
       location.textContent = `${weatherData.city}, ${weatherData.region}, ${weatherData.country}`;
     }
-    date.textContent = `${weatherData.date}`;
-    conditions.textContent = `${weatherData.condition}`;
-    // Note: add logic for if C or F is toggled, change temps
-    currentTemp.textContent = `${weatherData.currentTemp.c}°`;
-    feelsLike.textContent = `Feels like ${weatherData.feelsLike.c}°`;
-    chanceOfRain.textContent = `${weatherData.chanceRain}%`;
-    // Note add logic if imperial or metric is toggled, change units
-    wind.textContent = `${weatherData.wind.kph} km/h ${weatherData.wind.direction}`;
-    humidity.textContent = `${weatherData.humidity}%`;
-    uvIndex.textContent = `${weatherData.uvIndex}`;
-    sunrise.textContent = `${weatherData.sunrise}`;
-    sunset.textContent = `${weatherData.sunset}`;
+
+    if (units === 'metric') {
+      currentTemp.textContent = `${weatherData.currentTemp.c}°`;
+      feelsLike.textContent = `Feels like ${weatherData.feelsLike.c}°`;
+      wind.textContent = `${weatherData.wind.kph} km/h ${weatherData.wind.direction}`;
+    }
+    if (units === 'imperial') {
+      currentTemp.textContent = `${weatherData.currentTemp.f}°`;
+      feelsLike.textContent = `Feels like ${weatherData.feelsLike.f}°`;
+      wind.textContent = `${weatherData.wind.mph} mph ${weatherData.wind.direction}`;
+    }
   }
 
-  return { initPage, createWeatherCard };
+  return { initPage };
 })();
 
 export default domHandler;

@@ -14,12 +14,16 @@
         <i class="fa-solid fa-sun"></i>
         <h1 id="site-name">Nogi Weather</h1>
       </div>
-      <form class="form" id="search-form" novalidate>
-        <input class="input" id="search-input" type="text" placeholder="Search for a city..." />
-        <button class="button" id="search-btn">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </form>
+      <div class="form-section">
+        <button class="unit-toggle active" id="unit-metric">Metric</button>
+        <button class="unit-toggle" id="unit-imperial">Imperial</button>
+        <form class="form" id="search-form" novalidate>
+          <input class="input" id="search-input" type="text" placeholder="Search for a city..." />
+          <button id="search-btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
     </header>
 
     <div class="main">

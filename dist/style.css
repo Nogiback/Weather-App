@@ -72,16 +72,47 @@ body {
   color: rgb(225, 140, 12);
 }
 
+.fa-magnifying-glass {
+  position: relative;
+}
+
+.fa-magnifying-glass:hover {
+  color: rgb(225, 140, 12);
+}
+
+.fa-magnifying-glass:active {
+  top: 2px;
+}
+
 #site-name {
   vertical-align: middle;
   font-weight: 400;
   font-size: 2rem;
 }
 
+.form-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unit-toggle {
+  font-size: 0.8rem;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+#unit-metric.active,
+#unit-imperial.active {
+  color: var(--darkblue);
+  background-color: var(--lighterblue);
+}
+
 #search-form {
   display: flex;
   gap: 1rem;
   font-size: 1.3rem;
+  margin-left: 1.6rem;
 }
 
 #search-form #search-input {
@@ -89,7 +120,7 @@ body {
   border-radius: 10px;
   background-color: var(--lighterblue);
   color: var(--darkblue);
-  width: 20rem;
+  width: 16rem;
 }
 
 #search-btn {
